@@ -1,0 +1,223 @@
+/* Reset dan Dasar Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Pembungkus utama menggunakan Flexbox (tanpa grid) */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Baris tengah: sidebar (kiri) + konten (kanan) */
+.isi {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Navigasi */
+nav {
+    margin-top: 15px;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Header membentang penuh di atas */
+header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Aside sebagai sidebar */
+aside {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+aside blockquote {
+    margin: 15px 0;
+}
+
+/* Main di sebelah sidebar */
+main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tentang p:first-of-type {
+    margin-top: 20px;
+}
+
+/* Section keahlian menggunakan Flexbox */
+.keahlian-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.keahlian-box {
+    flex: 1;
+    min-width: 250px;
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 6px;
+}
+
+/* Footer membentang penuh di bawah */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+footer a.email-link {
+    color: #4da6ff;
+}
+
+/* Elemen Pendukung */
+#foto-profil {
+    max-width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 10px 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.btn-social {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+#btn-booyah {
+    background-color: #ff4500;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Responsif untuk layar kecil/HP: konten di atas, sidebar di bawahnya */
+@media (max-width: 768px) {
+    .isi {
+        flex-direction: column-reverse;
+    }
+}
+
+/* ===== CSS GRID LAYOUT ===== */
+/* Tempel di PALING BAWAH file CSS, supaya menimpa layout flexbox sebelumnya */
+
+/* 1. Pembungkus utama menggunakan CSS Grid */
+.container {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar content"
+        "footer footer";
+    /* 6. Menggunakan unit fr pada grid-template-columns */
+    grid-template-columns: 4fr 3fr 2fr;
+    grid-template-rows: auto auto auto;
+    /* 7. Menggunakan gap agar antar area tidak menempel */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Pembungkus .isi dilepas supaya aside & main ikut masuk ke grid .container */
+.isi {
+    display: contents;
+}
+
+/* 2. Header membentang penuh di bagian atas */
+header {
+    grid-area: header;
+}
+
+/* 3. Aside dijadikan sidebar */
+aside {
+    grid-area: sidebar;
+}
+
+/* 4. Main di area content (di sebelah sidebar) */
+main {
+    grid-area: content;
+}
+
+/* 5. Footer membentang penuh di paling bawah */
+footer {
+    grid-area: footer;
+}
+
+/* Responsif untuk layar kecil/HP */
+@media (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}
